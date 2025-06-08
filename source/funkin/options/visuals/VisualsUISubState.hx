@@ -7,6 +7,8 @@ import funkin.backend.system.Main;
 
 class VisualsUISubState extends BaseOptionsMenu
 {
+			#if !html5
+
 	var noteOptionID:Int = -1;
 	var notes:FlxTypedGroup<StrumNote>;
 	var notesTween:Array<FlxTween> = [];
@@ -15,7 +17,6 @@ class VisualsUISubState extends BaseOptionsMenu
 	{
 		title = 'Visuals';
 		rpcTitle = 'Visuals Menu'; //for Discord Rich Presence
-
 		// for note skins
 		notes = new FlxTypedGroup<StrumNote>();
 		for (i in 0...Note.colArray.length)
@@ -70,7 +71,7 @@ class VisualsUISubState extends BaseOptionsMenu
 		option.decimals = 1;
 		addOption(option);
 
-		var option:Option = new Option('Hold Splash Opacity',
+		/*var option:Option = new Option('Hold Splash Opacity',
 			'How much transparent should the Hold Splashes be.',
 			'holdSplashAlpha',
 			'percent');
@@ -79,7 +80,7 @@ class VisualsUISubState extends BaseOptionsMenu
 		option.maxValue = 1;
 		option.changeValue = 0.1;
 		option.decimals = 1;
-		addOption(option);
+		addOption(option);*/
 
 		var option:Option = new Option('Hide HUD',
 			'If checked, hides most HUD elements.',
@@ -127,7 +128,6 @@ class VisualsUISubState extends BaseOptionsMenu
 		option.changeValue = 0.1;
 		option.decimals = 1;
 		addOption(option);
-		
 		#if !mobile
 		var option:Option = new Option('Show Debug Info',
 			'If unchecked, hides the FPS & Memory Counter.',
@@ -197,6 +197,7 @@ class VisualsUISubState extends BaseOptionsMenu
 		note.reloadNote();
 		note.playAnim('static');
 	}
+	#end
 
 	#if !mobile
 	function onChangeFPSCounter()
